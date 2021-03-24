@@ -6,7 +6,10 @@ workflows:
       - build
       - tests:
           requires:
-            - build
+            - build 
+      - linter:
+          requires:
+            - tests
 
 
 jobs:
@@ -33,4 +36,13 @@ jobs:
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - ./node_modules        
+  linter:
+    docker:
+      - image: circleci/node:dubnium-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependencies-{{ checksum "package.json" }}-{{ .Environment.CACHE_VERSION }}
+      - run: yarn lint
+      - run: yarn format:check
