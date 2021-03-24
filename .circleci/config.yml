@@ -3,7 +3,9 @@ workflow:
   version: 2
   jobs:
     - build
-    - tests
+    - tests:
+        requires:
+          - build
 
 
 jobs:
