@@ -6,7 +6,7 @@ workflows:
       - install
       - tests:
           requires:
-            - build 
+            - install 
       - build:
           requires:
             - tests
