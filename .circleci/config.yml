@@ -43,5 +43,9 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: dependencies-{{ checksum "package.json" }}-{{ .Environment.CACHE_VERSION }}
+          key: yarn-packages-{{ checksum "yarn.lock" }}
       - run: yarn format:check
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules  
