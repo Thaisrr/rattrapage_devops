@@ -2,11 +2,11 @@ version: 2
 workflow:
   version: 2
   jobs:
-    - install
+    - build
 
 
 jobs:
-  install:
+  build:
     docker:
       - image: circleci/node:dubnium-browsers
     steps:
