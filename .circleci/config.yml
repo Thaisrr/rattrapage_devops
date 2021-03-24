@@ -10,6 +10,9 @@ workflows:
       - build:
           requires:
             - tests
+      - deploy:
+          requires:
+            - build
 
 
 jobs:
@@ -48,4 +51,16 @@ jobs:
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules  
+            - ./node_modules
+  deploy:
+    docker:
+      - image: circleci/node:dubnium-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: curl -X POST -d {} ${hook}
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
