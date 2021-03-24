@@ -1,11 +1,11 @@
 version: 2
-workflow:
-  version: 2
-  jobs:
-    - build
-    - tests:
-        requires:
-          - build
+workflows:
+  worflow:
+    jobs:
+      - build
+      - tests:
+          requires:
+            - build
 
 
 jobs:
