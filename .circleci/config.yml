@@ -17,7 +17,6 @@ workflows:
           requires:
             - build
 
-
 jobs:
   install:
     docker:
@@ -50,6 +49,7 @@ jobs:
       - checkout
       - restore_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn format:write
       - run: yarn format:check
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
@@ -58,9 +58,8 @@ jobs:
   build:
     docker:
       - image: circleci/node:dubnium-browsers
-    only:
-      ref:
-        - main
+    branches:
+      only: main
     steps:
       - checkout
       - restore_cache:
@@ -73,9 +72,8 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:dubnium-browsers
-    only:
-      ref:
-        - main
+    branches:
+      only: main
     steps:
       - checkout
       - restore_cache:
