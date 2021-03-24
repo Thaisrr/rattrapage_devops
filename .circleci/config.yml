@@ -13,9 +13,13 @@ workflows:
       - build:
           requires:
             - linter
+          branches:
+            only: main
       - deploy:
           requires:
             - build
+          branches:
+            only: main
 
 jobs:
   install:
@@ -58,8 +62,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:dubnium-browsers
-    branches:
-      only: main
     steps:
       - checkout
       - restore_cache:
@@ -72,8 +74,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/node:dubnium-browsers
-    branches:
-      only: main
     steps:
       - checkout
       - restore_cache:
