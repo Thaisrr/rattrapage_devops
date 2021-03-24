@@ -27,7 +27,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## `yarn format:check`
 
-It runs prettier and check if the writen code is in the right form in the application.
+It runs prettier and check if the written code is in the right form in the application.
 
 ## `netlify:deploy`
 
