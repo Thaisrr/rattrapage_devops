@@ -1,0 +1,20 @@
+version: 2
+workflow:
+  version: 2
+  jobs:
+    - build
+
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:dubnium-browsers
+    steps:
+      - checkout
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn test
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
