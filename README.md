@@ -1,3 +1,13 @@
+# You can see the app running :
+
+[https://silly-mestorf-2ec52d.netlify.app/](https://silly-mestorf-2ec52d.netlify.app/)
+
+<ul>
+    <li>Only the main branch is deployed</li>
+    <li>In the CI, the Build and Deploy jobs are only run if the target branch is "main"</li>
+    <li>All the other jobs ( installation, testing, and prettier ) are run for all branches</li>
+</ul>
+
 # Available Scripts
 
 In the project directory, you can run:
